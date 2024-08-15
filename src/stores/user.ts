@@ -6,16 +6,19 @@ export const useUserStore = defineStore('user', {
     return {
       user: null as User | null,
       token: null as string | null,
+      preference: undefined as 'local' | 'web' | undefined,
     }
   },
   persist: true,
-  getters: {},
   actions: {
     setUser (user: User) {
       this.user = user
     },
     setToken (token: string | null) {
       this.token = token
+    },
+    setPreference (preference: 'local' | 'web') {
+      this.preference = preference
     },
     logout () {
       this.$reset()
