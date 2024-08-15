@@ -7,30 +7,17 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    DatePicker: typeof import('./components/form/DatePicker.vue')['default']
-    DrawerItems: typeof import('./components/drawer/DrawerItems.vue')['default']
-    MoneyInput: typeof import('./components/form/MoneyInput.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     TAlert: typeof import('./components/core/TAlert.vue')['default']
     TAppBar: typeof import('./components/core/TAppBar.vue')['default']
-    TBirthDateInput: typeof import('./components/form/TBirthDateInput.vue')['default']
-    TBottomNav: typeof import('./components/core/TBottomNav.vue')['default']
     TButton: typeof import('./components/core/TButton.vue')['default']
     TCard: typeof import('./components/core/TCard.vue')['default']
-    TCellphoneInput: typeof import('./components/form/TCellphoneInput.vue')['default']
-    TCnpjInput: typeof import('./components/form/TCnpjInput.vue')['default']
-    TCpfInput: typeof import('./components/form/TCpfInput.vue')['default']
     TDateInput: typeof import('./components/form/TDateInput.vue')['default']
-    TDrawer: typeof import('./components/core/TDrawer.vue')['default']
     TEmailInput: typeof import('./components/form/TEmailInput.vue')['default']
-    TheDialog: typeof import('./components/core/TheDialog.vue')['default']
     TheSnackbar: typeof import('./components/core/TheSnackbar.vue')['default']
-    TLegalNameInput: typeof import('./components/form/TLegalNameInput.vue')['default']
-    TNameInput: typeof import('./components/form/TNameInput.vue')['default']
     TPageTitle: typeof import('./components/TPageTitle.vue')['default']
     TPasswordInput: typeof import('./components/form/TPasswordInput.vue')['default']
     TTextInput: typeof import('./components/core/TTextInput.vue')['default']
-    TTradeNameInput: typeof import('./components/form/TTradeNameInput.vue')['default']
   }
 }

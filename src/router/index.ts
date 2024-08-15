@@ -21,13 +21,14 @@ router.beforeEach((to, _, next) => {
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
   const userStore = useUserStore()
 
-  if (requiresAuth && (!userStore.token || userStore.token === '')) {
+  if (requiresAuth && (!userStore.token && userStore.preference !== 'local')) {
     next('/login')
   } else {
     if (
-      to.name === '/auth/login-view' &&
-      userStore.token !== null &&
-      userStore.token !== ''
+      (to.name === '/auth/login-view' &&
+        userStore.token !== null &&
+        userStore.token !== '' &&
+        userStore.preference === 'web')
     ) {
       next('/dashboard')
     } else {
