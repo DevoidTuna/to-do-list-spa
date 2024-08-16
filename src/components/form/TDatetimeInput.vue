@@ -3,7 +3,7 @@
     v-maska:[dateMask]
     :append-inner-icon="icon"
     color="primary"
-    :density="dense"
+    :density="density"
     :disabled="loading"
     :hide-details="hideDetails"
     :label="label"
@@ -37,7 +37,7 @@
         type: String,
         default: '',
       },
-      dense: {
+      density: {
         type: String as PropType<DensityProp>,
         default: 'compact',
       },

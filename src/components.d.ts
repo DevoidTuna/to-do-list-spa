@@ -9,15 +9,16 @@ declare module 'vue' {
   export interface GlobalComponents {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    StoreItem: typeof import('./components/to-do/StoreItem.vue')['default']
     TAlert: typeof import('./components/core/TAlert.vue')['default']
     TAppBar: typeof import('./components/core/TAppBar.vue')['default']
     TButton: typeof import('./components/core/TButton.vue')['default']
     TCard: typeof import('./components/core/TCard.vue')['default']
     TDateInput: typeof import('./components/form/TDateInput.vue')['default']
+    TDatetimeInput: typeof import('./components/form/TDatetimeInput.vue')['default']
     TEmailInput: typeof import('./components/form/TEmailInput.vue')['default']
-    TheSnackbar: typeof import('./components/core/TheSnackbar.vue')['default']
-    TPageTitle: typeof import('./components/TPageTitle.vue')['default']
     TPasswordInput: typeof import('./components/form/TPasswordInput.vue')['default']
+    TSnackbar: typeof import('./components/core/TSnackbar.vue')['default']
     TTextInput: typeof import('./components/core/TTextInput.vue')['default']
   }
 }

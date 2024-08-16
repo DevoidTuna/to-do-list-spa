@@ -1,9 +1,9 @@
 <template>
   <v-app>
-    <the-snackbar />
+    <t-snackbar />
     <t-app-bar app />
     <v-main>
-      <v-container class="ml-md-2 mx-0 pr-md-8 pr-4" fluid>
+      <v-container class="mx-0" fluid>
         <router-view v-slot="{ Component }">
           <v-fade-transition hide-on-leave>
             <component :is="Component" />
@@ -16,13 +16,6 @@
 
 <script lang="ts">
   import { defineComponent } from 'vue'
-  import TAppBar from './components/core/TAppBar.vue'
-  import TheSnackbar from './components/core/TheSnackbar.vue'
 
-  export default defineComponent({
-    components: {
-      TAppBar,
-      TheSnackbar,
-    },
-  })
+  export default defineComponent({})
 </script>
