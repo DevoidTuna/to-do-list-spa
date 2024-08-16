@@ -1,8 +1,10 @@
 <template>
   <section>
-    <v-container>
-      dashboard view
-    </v-container>
+    <v-row justify="center">
+      <v-col cols="12" md="8">
+        <store-item />
+      </v-col>
+    </v-row>
   </section>
 </template>
 
