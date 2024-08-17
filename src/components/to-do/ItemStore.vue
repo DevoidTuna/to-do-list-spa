@@ -1,6 +1,6 @@
 <template>
   <v-col>
-    <t-card elevation="15" icon="mdi-plus" rounded="lg" title="Add to-do item">
+    <t-card elevation="6" icon="mdi-plus" rounded="lg" title="Add task">
       <v-form @submit.prevent="submit">
         <v-row class="mx-0">
           <v-col class="d-flex ga-2 align-center">

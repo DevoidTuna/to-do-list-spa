@@ -17,8 +17,7 @@ export const useTodoStore = defineStore('todo', {
         return {
           id: this.items.length,
           content,
-          created_at: DateTime.now().toFormat('dd/MM/yyyy hh:mm:ss'),
-          deleted_at: null,
+          created_at: DateTime.now().toFormat('yyyy-MM-dd HH:mm:ss'),
           end_at: null,
           finished_at: null,
         }

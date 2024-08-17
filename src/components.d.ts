@@ -7,6 +7,10 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    ItemCard: typeof import('./components/to-do/ItemCard.vue')['default']
+    ItemInfo: typeof import('./components/to-do/ItemInfo.vue')['default']
+    ItemList: typeof import('./components/to-do/ItemList.vue')['default']
+    ItemStore: typeof import('./components/to-do/ItemStore.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     StoreItem: typeof import('./components/to-do/StoreItem.vue')['default']

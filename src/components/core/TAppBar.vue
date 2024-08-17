@@ -7,7 +7,7 @@
       :height="isMobile ? 55 : 75"
     >
       <v-row justify="center">
-        <v-col class="d-flex justify-start" cols="12" md="10">
+        <v-col class="d-flex justify-start" cols="12" md="8">
           <v-col
             class="my-auto pa-0"
             :class="[{ 'd-flex': !isMobile }]"

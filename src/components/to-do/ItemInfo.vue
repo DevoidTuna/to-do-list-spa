@@ -1,0 +1,64 @@
+<template>
+  <v-col class="py-2">
+    <v-row class="my-1 mr-0" justify="space-between">
+      <h3 class="mx-4 text-h4 font-weight-bold text-primary">
+        Pending:
+        <v-fade-transition leave-absolute>
+          <span :key="`tasks-${remainingTasks}`">
+            {{ remainingTasks }}
+          </span>
+        </v-fade-transition>
+      </h3>
+
+      <div class="d-flex align-center">
+        <strong class="mx-4 text-success-darken-2">
+          tasks: {{ qntTasks }}
+        </strong>
+
+        <v-divider vertical />
+
+        <strong class="mx-4 text-info-darken-2">
+          completed: {{ completedTasks }}
+        </strong>
+
+        <v-spacer />
+
+        <v-progress-circular
+          v-model="progress"
+          class="me-2"
+          color="primary"
+          size="35"
+          width="5"
+        />
+      </div>
+    </v-row>
+    <v-divider class="mt-2" />
+  </v-col>
+</template>
+
+<script lang="ts">
+  import { useTodoStore } from '@/stores/todo'
+  import { defineComponent } from 'vue'
+
+  export default defineComponent({
+    setup () {
+      return { todo: useTodoStore() }
+    },
+    computed: {
+      completedTasks (): number {
+        return this.todo.items.filter(task => task.finished_at).length
+      },
+      remainingTasks (): number {
+        return this.todo.items.filter(task => !task.finished_at).length
+      },
+      progress (): number {
+        return this.completedTasks
+          ? (this.completedTasks / this.qntTasks) * 100
+          : 0
+      },
+      qntTasks (): number {
+        return this.todo.items.length
+      },
+    },
+  })
+</script>
