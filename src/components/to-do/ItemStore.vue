@@ -59,6 +59,8 @@
             const { data } = await new TodoService().store(task)
             this.task.pushItem(data.data)
           }
+
+          this.item.content = ''
         } catch (error) {
           this.$snackbar.show(
             'An error occurred while performing your operation, please try again.',
