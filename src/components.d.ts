@@ -21,6 +21,7 @@ declare module 'vue' {
     TDateInput: typeof import('./components/form/TDateInput.vue')['default']
     TDatetimeInput: typeof import('./components/form/TDatetimeInput.vue')['default']
     TEmailInput: typeof import('./components/form/TEmailInput.vue')['default']
+    TFooter: typeof import('./components/core/TFooter.vue')['default']
     TPasswordInput: typeof import('./components/form/TPasswordInput.vue')['default']
     TSnackbar: typeof import('./components/core/TSnackbar.vue')['default']
     TTextInput: typeof import('./components/core/TTextInput.vue')['default']

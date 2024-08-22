@@ -21,20 +21,17 @@ router.beforeEach((to, _, next) => {
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
   const userStore = useUserStore()
 
-  if (requiresAuth && (!userStore.token && userStore.preference !== 'local')) {
-    next('/login')
-  } else {
-    if (
-      (to.name === '/auth/login-view' &&
-        userStore.token !== null &&
-        userStore.token !== '' &&
-        userStore.preference === 'web')
-    ) {
-      next('/dashboard')
-    } else {
-      next()
+  if (userStore.preference === 'web' && userStore.token) {
+    if (to.path === '/' || to.path === '/login') {
+      return next('/dashboard')
+    }
+
+    if (requiresAuth && !userStore.token) {
+      return next('/')
     }
   }
+
+  next()
 })
 
 export default router

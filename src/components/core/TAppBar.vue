@@ -31,13 +31,11 @@
             lg="9"
             xl="10"
           >
-            <!-- Disabled buttons while api not finished -->
-            <div v-if="user.user === null" class="d-flex ga-2">
-              <t-button disabled variant="text">Login</t-button>
-              <t-button color="primary" disabled>Register</t-button>
+            <div v-if="guest" class="d-flex ga-2">
+              <t-button variant="outlined" @click="redirectToLogin">Access account</t-button>
             </div>
             <div v-else>
-              <t-button color="primary" prepend-icon="mdi-account">Account</t-button>
+              <t-button color="primary" prepend-icon="mdi-logout" variant="outlined" @click="logout">Logout</t-button>
             </div>
           </v-col>
         </v-col>
@@ -49,9 +47,10 @@
 <script lang="ts">
   import { defineComponent } from 'vue'
 
-  import logo from '../../assets/images/logo.jpeg'
+  import logo from '@/assets/images/logo.jpeg'
   import { useUserStore } from '@/stores/user'
-  import TButton from './TButton.vue'
+  import TButton from '@/components/core/TButton.vue'
+  import UserService from '@/services/UserService'
 
   export default defineComponent({
     components: {
@@ -68,6 +67,18 @@
     computed: {
       isMobile (): boolean {
         return this.$vuetify.display.smAndDown
+      },
+      guest (): boolean {
+        return this.user.user === null
+      },
+    },
+    methods: {
+      logout () {
+        this.user.logout()
+        this.$router.push('/')
+      },
+      redirectToLogin () {
+        this.$router.push('/login')
       },
     },
   })

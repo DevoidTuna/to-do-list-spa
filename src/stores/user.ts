@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { User } from '@/types/User'
+import { useTodoStore } from './todo'
 
 export const useUserStore = defineStore('user', {
   state: () => {
@@ -21,6 +22,7 @@ export const useUserStore = defineStore('user', {
       this.preference = preference
     },
     logout () {
+      useTodoStore().$reset()
       this.$reset()
     },
   },

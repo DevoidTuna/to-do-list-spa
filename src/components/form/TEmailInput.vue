@@ -2,7 +2,7 @@
   <t-text-input
     label="E-mail"
     :model-value="modelValue"
-    placeholder="email@exemplo.com"
+    placeholder="email@example.com"
     prepend-inner-icon="mdi-email"
     :rules="rules.email"
     type="email"
@@ -30,10 +30,10 @@
       return {
         rules: {
           email: [
-            (v: string) => !!v || 'E-mail é obrigatório',
+            (v: string) => !!v || 'E-mail is required',
             (v: string) =>
               /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/.test(v) ||
-              'E-mail deve ser válido',
+              'E-mail must be valid',
           ] as ValidationRule[],
         },
       }

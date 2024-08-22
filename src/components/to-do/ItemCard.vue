@@ -1,22 +1,25 @@
 <template>
-  <v-hover v-slot="{ isHovering, props }" open-delay="10">
+  <v-hover v-slot="{ isHovering, props }" open-delay="30">
     <v-card
-      :class="{ 'bg-grey-lighten-5': finishedItem}"
+      :class="{ 'bg-grey-lighten-3': finishedItem }"
       :elevation="finishedItem ? 1 : isHovering ? 6 : 3"
       rounded="lg"
       v-bind="props"
     >
-      <v-col class="d-flex justify-space-between align-center" :class="{'py-1': finishedItem}">
+      <v-col
+        class="d-flex justify-space-between align-center"
+        :class="{ 'py-1': finishedItem }"
+      >
         <div class="d-flex ga-4 align-center">
           <v-btn
-            :color="finishedItem ? 'white' : 'primary'"
-            :icon="finishedItem ? 'mdi-close' : 'mdi-check'"
-            :variant="finishedItem ? 'flat' : 'elevated'"
+            color="primary"
+            icon="mdi-check"
+            :variant="finishedItem ? 'flat' : 'outlined'"
             @click="changeStatus(item)"
           />
           <div
             class="text-body-1"
-            :class="{ 'text-decoration-line-through': finishedItem}"
+            :class="{ 'text-decoration-line-through': finishedItem }"
           >
             {{ item.content }}
           </div>
@@ -33,7 +36,9 @@
 </template>
 
 <script lang="ts">
+  import TodoService from '@/services/TodoService'
   import { useTodoStore } from '@/stores/todo'
+  import { useUserStore } from '@/stores/user'
   import { ToDoItem } from '@/types/ToDoItem'
   import { DateTime } from 'luxon'
   import { defineComponent, PropType } from 'vue'
@@ -46,7 +51,7 @@
       },
     },
     setup () {
-      return { todo: useTodoStore() }
+      return { todo: useTodoStore(), user: useUserStore() }
     },
     computed: {
       finishedItem (): boolean {
@@ -54,13 +59,14 @@
       },
     },
     methods: {
-      changeStatus (item: ToDoItem): ToDoItem | undefined {
+      async changeStatus (item: ToDoItem) {
         try {
           const updatedItem = item
           updatedItem.finished_at = item.finished_at
             ? null
             : DateTime.now().toFormat('yyyy-MM-dd HH:mm:ss')
           this.todo.update(updatedItem)
+          if (this.user.preference === 'web') { await new TodoService().update(item.id, item) }
           return updatedItem
         } catch (error) {
           this.$snackbar.show(
@@ -69,12 +75,16 @@
           )
         }
       },
-      destroy (item: ToDoItem): void {
+      async destroy (item: ToDoItem): Promise<void> {
         try {
-          return this.todo.destroy(item)
+          this.todo.destroy(item)
+          if (this.user.preference === 'web') {
+            await new TodoService().destroy(item)
+            this.todo.destroy(item)
+          }
         } catch (error) {
           this.$snackbar.show(
-            'An error occurred while deleting the item',
+            'An error occurred while deleting the item ' + item.id,
             'error'
           )
         }

@@ -1,22 +1,17 @@
 import type { RouteRecordRaw } from 'vue-router'
-import Login from '@/pages/auth/login-view.vue'
-import { useUserStore } from '@/stores/user'
+import IndexView from '@/pages/auth/index-view.vue'
+import AuthView from '@/pages/auth/auth-view.vue'
 
 const routes: Readonly<RouteRecordRaw[]> = [
   {
-    path: '/login',
-    name: 'login',
-    component: Login,
+    path: '/',
+    name: 'index',
+    component: IndexView,
   },
   {
-    path: '/',
-    redirect: () => {
-      if (useUserStore().user !== null) {
-        return { path: '/dashboard' }
-      } else {
-        return { path: '/login' }
-      }
-    },
+    path: '/login',
+    name: 'login',
+    component: AuthView,
   },
 ]
 

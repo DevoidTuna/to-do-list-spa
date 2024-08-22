@@ -5,7 +5,7 @@ type User = {
   name: string;
   email: string;
 
-  toDoItems?: ToDoItem[];
+  tasks?: ToDoItem[];
 }
 
 export { User }

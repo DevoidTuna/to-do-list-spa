@@ -20,7 +20,7 @@ export const useTodoStore = defineStore('todo', {
           created_at: DateTime.now().toFormat('yyyy-MM-dd HH:mm:ss'),
           end_at: null,
           finished_at: null,
-        }
+        } as object as ToDoItem
       }
       return { content } as object as ToDoItem
     },
@@ -28,7 +28,8 @@ export const useTodoStore = defineStore('todo', {
       this.items.push(item)
     },
     destroy (item: ToDoItem) {
-      this.items.splice(this.items.indexOf(item), 1)
+      const selectedIndex = this.items.findIndex(obj => obj === item)
+      if (selectedIndex >= 0) this.items.splice(selectedIndex, 1)
     },
     update (item: ToDoItem) {
       const oldItem = this.items.find(obj => obj.id === item.id)
@@ -39,6 +40,9 @@ export const useTodoStore = defineStore('todo', {
       } else {
         useSnackBar().show(`Error trying updating ${item.id}`, 'error')
       }
+    },
+    setFetchData (data: ToDoItem[]) {
+      this.items = data
     },
   },
 })

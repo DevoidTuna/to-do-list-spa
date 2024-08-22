@@ -11,6 +11,18 @@
       </h3>
 
       <div class="d-flex align-center">
+        <v-slide-y-reverse-transition class="d-flex">
+          <v-col v-if="sync" class="d-flex align-center ga-2">
+            Syncing
+            <v-progress-circular
+              class="mr-1"
+              indeterminate
+              size="20"
+              width="2"
+            />
+          </v-col>
+        </v-slide-y-reverse-transition>
+
         <strong class="mx-4 text-success-darken-2">
           tasks: {{ qntTasks }}
         </strong>
@@ -41,6 +53,12 @@
   import { defineComponent } from 'vue'
 
   export default defineComponent({
+    props: {
+      sync: {
+        type: Boolean,
+        default: false,
+      },
+    },
     setup () {
       return { todo: useTodoStore() }
     },

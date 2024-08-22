@@ -11,6 +11,7 @@
         </router-view>
       </v-container>
     </v-main>
+    <t-footer />
   </v-app>
 </template>
 
