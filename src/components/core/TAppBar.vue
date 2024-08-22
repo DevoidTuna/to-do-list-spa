@@ -50,7 +50,6 @@
   import logo from '@/assets/images/logo.jpeg'
   import { useUserStore } from '@/stores/user'
   import TButton from '@/components/core/TButton.vue'
-  import UserService from '@/services/UserService'
 
   export default defineComponent({
     components: {

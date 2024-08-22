@@ -15,13 +15,13 @@
 
 <script lang="ts">
   import TodoService from '@/services/TodoService'
-  import { useTodoStore } from '@/stores/todo'
+  import { useTaskStore } from '@/stores/task'
   import { useUserStore } from '@/stores/user'
   import { defineComponent } from 'vue'
 
   export default defineComponent({
     setup () {
-      return { todo: useTodoStore(), user: useUserStore() }
+      return { task: useTaskStore(), user: useUserStore() }
     },
     data () {
       return {
@@ -31,7 +31,7 @@
     },
     computed: {
       items () {
-        return this.todo.items
+        return this.task.items
       },
     },
     async created () {
@@ -40,11 +40,11 @@
     methods: {
       async fetch (): Promise<void> {
         try {
-          if (this.todo.items.length > 0) this.loading = false
+          if (this.task.items.length > 0) this.loading = false
           if (this.user.preference === 'web') {
             this.sync = true
             const { data } = await new TodoService().index()
-            this.todo.setFetchData(data.data)
+            this.task.setFetchData(data.data)
           }
         } catch (error) {
           this.$snackbar.show('An error occurred while synchronizing tasks', 'error')

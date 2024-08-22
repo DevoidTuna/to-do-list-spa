@@ -37,21 +37,21 @@
 
 <script lang="ts">
   import TodoService from '@/services/TodoService'
-  import { useTodoStore } from '@/stores/todo'
+  import { useTaskStore } from '@/stores/task'
   import { useUserStore } from '@/stores/user'
-  import { ToDoItem } from '@/types/ToDoItem'
+  import { Task } from '@/types/Task'
   import { DateTime } from 'luxon'
   import { defineComponent, PropType } from 'vue'
 
   export default defineComponent({
     props: {
       item: {
-        type: Object as PropType<ToDoItem>,
+        type: Object as PropType<Task>,
         required: true,
       },
     },
     setup () {
-      return { todo: useTodoStore(), user: useUserStore() }
+      return { task: useTaskStore(), user: useUserStore() }
     },
     computed: {
       finishedItem (): boolean {
@@ -59,13 +59,13 @@
       },
     },
     methods: {
-      async changeStatus (item: ToDoItem) {
+      async changeStatus (item: Task) {
         try {
           const updatedItem = item
           updatedItem.finished_at = item.finished_at
             ? null
             : DateTime.now().toFormat('yyyy-MM-dd HH:mm:ss')
-          this.todo.update(updatedItem)
+          this.task.update(updatedItem)
           if (this.user.preference === 'web') { await new TodoService().update(item.id, item) }
           return updatedItem
         } catch (error) {
@@ -75,12 +75,12 @@
           )
         }
       },
-      async destroy (item: ToDoItem): Promise<void> {
+      async destroy (item: Task): Promise<void> {
         try {
-          this.todo.destroy(item)
+          this.task.destroy(item)
           if (this.user.preference === 'web') {
             await new TodoService().destroy(item)
-            this.todo.destroy(item)
+            this.task.destroy(item)
           }
         } catch (error) {
           this.$snackbar.show(

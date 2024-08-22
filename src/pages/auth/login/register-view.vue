@@ -43,7 +43,7 @@
 
 <script lang="ts">
   import UserService from '@/services/UserService'
-  import { useTodoStore } from '@/stores/todo'
+  import { useTaskStore } from '@/stores/task'
   import { useUserStore } from '@/stores/user'
   import { ValidationRule } from '@/types/vuetify/ValidationRule'
   import { defineComponent } from 'vue'
@@ -51,7 +51,7 @@
 
   export default defineComponent({
     setup () {
-      return { user: useUserStore(), todo: useTodoStore() }
+      return { user: useUserStore(), task: useTaskStore() }
     },
     data () {
       return {
@@ -86,7 +86,7 @@
             this.user.setUser(data.data.user)
             this.user.setToken(data.data.token)
             this.user.setPreference('web')
-            this.todo.items = []
+            this.task.items = []
             this.$snackbar.show('Account created successfully', 'success')
             return this.$router.push('/dashboard')
           } catch (error) {

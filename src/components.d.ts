@@ -13,7 +13,6 @@ declare module 'vue' {
     ItemStore: typeof import('./components/to-do/ItemStore.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    StoreItem: typeof import('./components/to-do/StoreItem.vue')['default']
     TAlert: typeof import('./components/core/TAlert.vue')['default']
     TAppBar: typeof import('./components/core/TAppBar.vue')['default']
     TButton: typeof import('./components/core/TButton.vue')['default']

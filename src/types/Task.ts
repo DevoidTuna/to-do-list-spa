@@ -1,4 +1,4 @@
-type ToDoItem = {
+type Task = {
   id: number;
   user_id: number;
   content: string;
@@ -7,4 +7,4 @@ type ToDoItem = {
   created_at: string;
 }
 
-export { ToDoItem }
+export type { Task }

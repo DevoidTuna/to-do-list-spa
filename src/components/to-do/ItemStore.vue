@@ -28,20 +28,20 @@
 <script lang="ts">
   import { defineComponent } from 'vue'
   import { useUserStore } from '@/stores/user'
-  import { useTodoStore } from '@/stores/todo'
+  import { useTaskStore } from '@/stores/task'
   import TodoService from '@/services/TodoService'
-  import { ToDoItem } from '@/types/ToDoItem'
+  import { Task } from '@/types/Task'
 
   export default defineComponent({
     setup () {
-      return { user: useUserStore(), todo: useTodoStore() }
+      return { user: useUserStore(), task: useTaskStore() }
     },
     data () {
       return {
         loading: false,
         item: {
           content: '',
-        } as ToDoItem,
+        } as Task,
       }
     },
     methods: {
@@ -52,12 +52,12 @@
           this.loading = true
 
           if (this.user.preference === 'local') {
-            const toDoItem = this.todo.store(this.item.content)
-            this.todo.pushItem(toDoItem)
+            const toDoItem = this.task.store(this.item.content)
+            this.task.pushItem(toDoItem)
           } else {
             const task = this.item
             const { data } = await new TodoService().store(task)
-            this.todo.pushItem(data.data)
+            this.task.pushItem(data.data)
           }
         } catch (error) {
           this.$snackbar.show(

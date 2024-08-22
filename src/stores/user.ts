@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { User } from '@/types/User'
-import { useTodoStore } from './todo'
+import { useTaskStore } from './task'
 
 export const useUserStore = defineStore('user', {
   state: () => {
@@ -22,7 +22,7 @@ export const useUserStore = defineStore('user', {
       this.preference = preference
     },
     logout () {
-      useTodoStore().$reset()
+      useTaskStore().$reset()
       this.$reset()
     },
   },

@@ -5,7 +5,6 @@ import router from '../router'
 
 axios.defaults.headers.common['Content-Type'] = 'application/json'
 axios.defaults.baseURL = import.meta.env.VITE_API_URL
-console.log('API Base URL:', axios.defaults.baseURL)
 
 axios.interceptors.request.use(config => {
   const userStore = useUserStore()

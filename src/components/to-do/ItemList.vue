@@ -10,16 +10,16 @@
 
 <script lang="ts">
   import { defineComponent } from 'vue'
-  import { useTodoStore } from '@/stores/todo'
-  import { ToDoItem } from '@/types/ToDoItem'
+  import { useTaskStore } from '@/stores/task'
+  import { Task } from '@/types/Task'
 
   export default defineComponent({
     setup () {
-      return { todo: useTodoStore() }
+      return { task: useTaskStore() }
     },
     computed: {
-      items (): ToDoItem[] {
-        return [...this.todo.items].sort((a, b) => b.id - a.id)
+      items (): Task[] {
+        return [...this.task.items].sort((a, b) => b.id - a.id)
       },
     },
   })

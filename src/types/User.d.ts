@@ -1,11 +1,11 @@
-import { ToDoItem } from './ToDoItem'
+import { Task } from './Task'
 
 type User = {
   id: number;
   name: string;
   email: string;
 
-  tasks?: ToDoItem[];
+  tasks?: Task[];
 }
 
 export { User }

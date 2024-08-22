@@ -23,13 +23,13 @@
 
 <script lang="ts">
   import UserService from '@/services/UserService'
-  import { useTodoStore } from '@/stores/todo'
+  import { useTaskStore } from '@/stores/task'
   import { useUserStore } from '@/stores/user'
   import { defineComponent } from 'vue'
 
   export default defineComponent({
     setup () {
-      return { user: useUserStore(), todo: useTodoStore() }
+      return { user: useUserStore(), task: useTaskStore() }
     },
     data () {
       return {
@@ -50,7 +50,7 @@
             )
             this.user.setUser(data.data.user)
             this.user.setToken(data.data.token)
-            this.todo.items = []
+            this.task.items = []
             this.user.setPreference('web')
             this.$snackbar.show('Login completed', 'success')
             return this.$router.push('/dashboard')

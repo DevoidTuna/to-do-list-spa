@@ -49,7 +49,7 @@
 </template>
 
 <script lang="ts">
-  import { useTodoStore } from '@/stores/todo'
+  import { useTaskStore } from '@/stores/task'
   import { defineComponent } from 'vue'
 
   export default defineComponent({
@@ -60,14 +60,14 @@
       },
     },
     setup () {
-      return { todo: useTodoStore() }
+      return { task: useTaskStore() }
     },
     computed: {
       completedTasks (): number {
-        return this.todo.items.filter(task => task.finished_at).length
+        return this.task.items.filter(task => task.finished_at).length
       },
       remainingTasks (): number {
-        return this.todo.items.filter(task => !task.finished_at).length
+        return this.task.items.filter(task => !task.finished_at).length
       },
       progress (): number {
         return this.completedTasks
@@ -75,7 +75,7 @@
           : 0
       },
       qntTasks (): number {
-        return this.todo.items.length
+        return this.task.items.length
       },
     },
   })

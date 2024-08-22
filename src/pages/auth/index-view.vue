@@ -21,7 +21,7 @@
             height="150"
             rounded="lg"
             size="x-large"
-            @click="setPreference('local')"
+            @click="setLocal()"
           >Local storage</t-button>
         </v-col>
         <v-col
@@ -61,8 +61,8 @@
       return { user: useUserStore() }
     },
     methods: {
-      async setPreference (preference: 'local' | 'web') {
-        this.user.setPreference(preference)
+      async setLocal () {
+        this.user.setPreference('local')
         await this.$router.push('/dashboard')
       },
       async redirectToLogin () {
