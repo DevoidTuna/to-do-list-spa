@@ -18,9 +18,9 @@
             <router-link to="/">
               <v-img
                 class="ml-2"
-                :height="isMobile ? 50 : 68"
+                :height="isMobile ? 40 : 58"
                 :src="logo"
-                :width="isMobile ? 50 : 68"
+                :width="isMobile ? 40 : 58"
               />
             </router-link>
           </v-col>
